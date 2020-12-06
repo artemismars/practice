@@ -1,57 +1,39 @@
 import React, { Component } from "react";
+import { Form, FormControl, Nav, Navbar, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    const receivedValue = props.num;
-    const myArray = ["dog", "cat", "lion"];
-    this.state = {
-      homeNum: parseInt(receivedValue),
-      homeArray: myArray,
-      homeItem: "",
-    };
-    this.counter = this.counter.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {};
   }
 
   render() {
     return (
       <>
-        <h1>Hello World!</h1>
-        <button onClick={this.counter}>increase the value</button>
-        <p>{this.state.homeNum}</p>
-        <input
-          type="text"
-          value={this.state.item}
-          onChange={this.handleChange}
-        />
-        <button onClick={this.handleClick}>add item</button>
-        <ul>
-          {this.state.homeArray.map((item) => {
-            return <li>{item}</li>;
-          })}
-        </ul>
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand>Navbar</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link as={Link} to={"/"}>
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to={"/aboutus"}>
+              AboutUs
+            </Nav.Link>
+            <Nav.Link as={Link} to={"/increment"}>
+              Increment
+            </Nav.Link>
+            <Nav.Link as={Link} to={"/todo"}>
+              Todo
+            </Nav.Link>
+          </Nav>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-info">Search</Button>
+          </Form>
+        </Navbar>
       </>
     );
-  }
-
-  counter() {
-    const increasedValue = this.state.homeNum + 1;
-    this.setState({
-      homeNum: increasedValue,
-    });
-  }
-  handleChange(e) {
-    this.setState({
-      homeItem: e.target.value,
-    });
-  }
-  handleClick(e) {
-    this.state.homeArray.push(this.state.homeItem);
-    this.setState({
-      homeArray: this.state.homeArray,
-    });
   }
 }
 

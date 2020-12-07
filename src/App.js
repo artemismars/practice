@@ -2,13 +2,11 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import Home from "./pages/home";
+
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import AboutUs from "./pages/aboutus";
 import Increment from "./pages/increment";
 import Todo from "./pages/todo";
-
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Switch from "react-bootstrap/esm/Switch";
-
 function App() {
   return (
     <Router>

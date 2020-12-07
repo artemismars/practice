@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
+import Selfie from "../selfie.jpg";
 
 class AboutUs extends Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class AboutUs extends Component {
         <Container>
           <Row>
             <Col xs={6}>1</Col>
-            <Col xs={6}>2</Col>
+            <Col xs={6}>
+              <Image src={Selfie} width={300}></Image>
+            </Col>
           </Row>
         </Container>
       </>

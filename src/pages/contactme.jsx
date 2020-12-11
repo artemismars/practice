@@ -5,15 +5,16 @@ class ContactMe extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usersEmail: "",
+      email: "",
+      password: "",
       title: "",
-      content: "",
+      message: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
-    this.handleContent = this.handleContent.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
   }
 
   render() {
@@ -21,7 +22,7 @@ class ContactMe extends Component {
       <Container>
         <Row className="justify-content-md-center">
           <Col xs={4}>
-            <Form action="post" onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
@@ -43,7 +44,7 @@ class ContactMe extends Component {
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  onChange={this.handleContent}
+                  onChange={this.handleMessage}
                 />
               </Form.Group>
               <button type="submit">submit</button>
@@ -56,15 +57,18 @@ class ContactMe extends Component {
 
   handleSubmit(e) {
     // Zapier Link is empty due to the sercurity issue
-    const ZapierLink = "";
+    const ZapierLink = "http://localhost:8000";
     e.preventDefault();
     const data = {
-      usersEmail: this.state.usersEmail,
+      email: this.state.email,
       title: " " + this.state.title,
-      content: " " + this.state.content,
+      message: " " + this.state.message,
     };
     fetch(ZapierLink, {
       method: "post",
+      headers: new Headers({
+        "content-type": "application/json",
+      }),
       body: JSON.stringify(data),
     }).then((response) => {
       console.log("Rquest Complete!");
@@ -74,7 +78,7 @@ class ContactMe extends Component {
   handleEmail(e) {
     const email = e.target.value;
     this.setState({
-      usersEmail: email,
+      email: email,
     });
   }
   handleTitle(e) {
@@ -83,10 +87,10 @@ class ContactMe extends Component {
       title: title,
     });
   }
-  handleContent(e) {
-    const content = e.target.value;
+  handleMessage(e) {
+    const message = e.target.value;
     this.setState({
-      content: content,
+      message: message,
     });
   }
 }
